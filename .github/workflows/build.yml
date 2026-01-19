@@ -15,8 +15,8 @@ jobs:
             - desktop
             - server
           suite:
-            - jammy
             - noble
+            - plucky
     steps:
       - name: Get more disk space
         uses: jlumbroso/free-disk-space@main
