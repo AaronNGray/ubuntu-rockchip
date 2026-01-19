@@ -1,13 +1,17 @@
-name: Build
+name: Test Build
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - test
 
 run-name: Build
 
 jobs:
   rootfs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     name: Build rootfs 
     strategy:
         matrix:
@@ -15,7 +19,6 @@ jobs:
             - desktop
             - server
           suite:
-            - jammy
             - noble
     steps:
       - name: Get more disk space
@@ -58,12 +61,11 @@ jobs:
             if-no-files-found: error
 
   kernel:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     name: Build kernel 
     strategy:
         matrix:
           suite:
-            - jammy
             - noble
     steps:
       - name: Get more disk space
